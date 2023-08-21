@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Standard</string>
+    <string name="enter_name">enter name</string>
+    <string name="enter_pwd">enter password</string>
+</resources>
