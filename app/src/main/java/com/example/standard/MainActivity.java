@@ -2,6 +2,7 @@ package com.example.standard;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -23,5 +24,10 @@ public class MainActivity extends AppCompatActivity {
         TextView textView = findViewById(R.id.textView);
         //change the content of the textview
         textView.setText(name);
+    }
+
+    public void launchHome(View view) {
+        Intent homeIntent = new Intent(this,HomeActivity.class);
+        startActivity(homeIntent);
     }
 }
