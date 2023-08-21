@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         /*switch (view.getId()){
             case R.id.btnHome:*/
                 Intent homeIntent = new Intent(this,HomeActivity.class); //explicit intent
+                homeIntent.putExtra("sc","android app dev at sc");
                 startActivity(homeIntent);
               /*  break;
             case R.id.btnDial:
