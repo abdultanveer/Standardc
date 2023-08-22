@@ -27,14 +27,26 @@ public class RecyViewActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         //dynamic receiver
-         smsReceiver = new SmsReceiver();
-        registerReceiver(smsReceiver,new IntentFilter("android.provider.Telephony.SMS_RECEIVED"));
+        add(10,200);
+
+    }
+
+    private void add(int x, int y) {
+
+
+        int j = 10;
+
+        for(int i=1; i<5;i++){
+            j = j*i;
+        }
+        throw  new NullPointerException("some reason");
+
     }
 
 
     @Override
     protected void onStop() {
         super.onStop();
-        unregisterReceiver(smsReceiver);
+
     }
 }
