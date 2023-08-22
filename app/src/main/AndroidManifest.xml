@@ -35,6 +35,7 @@
         </activity>
         <activity
             android:name=".HomeActivity"
+            android:theme="@style/myfont_style"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
