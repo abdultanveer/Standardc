@@ -12,7 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="26dp"
         android:layout_marginTop="57dp"
+        android:layout_marginBottom="79dp"
         android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/_dynamic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,13 +34,26 @@
 
     <Button
         android:id="@+id/btnSelect"
-        android:onClick="handleSelection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="18dp"
+        android:onClick="handleSelection"
         android:text="select"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/etContact"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/langListview"
+        android:entries="@array/languages"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvResult" />
 </androidx.constraintlayout.widget.ConstraintLayout>

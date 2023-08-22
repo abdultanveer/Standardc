@@ -7,15 +7,18 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity {
+    String[] countries = {"India","china","pakistan","bangladesh","srilanka"};
 
     public static String TAG = HomeActivity.class.getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        ListView cListView = findViewById(R.id.langListview);
 
         Log.i(TAG,"oncreate");
 
