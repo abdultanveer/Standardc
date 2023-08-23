@@ -5,6 +5,7 @@ import androidx.core.app.NotificationCompat;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -29,9 +30,9 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
        // ListView cListView = findViewById(R.id.langListview);
         notificationManager = getSystemService(NotificationManager.class);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+        /*ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, //layout of each row of listview
-                countries);
+                countries);*/
        // cListView.setAdapter(adapter);
 
         Log.i(TAG,"oncreate");
@@ -131,10 +132,17 @@ public class HomeActivity extends AppCompatActivity {
 
     public void showNotification(View view) {
         createNotificationChannel();
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "my channelid")
                 .setSmallIcon(R.drawable.baseline_food_bank_24)
                 .setContentTitle("standard chartered")
                 .setContentText("content text description")
+                .setContentIntent(pendingIntent)
+
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
         notificationManager.notify(111, builder.build());
