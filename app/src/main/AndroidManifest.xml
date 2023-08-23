@@ -25,6 +25,10 @@
             android:enabled="true"
             android:exported="true"></service>
 
+        <service android:name=".CalcService"
+            android:enabled="true"
+            android:exported="true"/>
+
         <receiver
             android:name=".SmsReceiver"
             android:enabled="true"
@@ -40,7 +44,7 @@
         <activity
             android:name=".HomeActivity"
             android:exported="true"
-            android:theme="@style/myfont_style">
+           >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

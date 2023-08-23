@@ -2,8 +2,11 @@ package com.example.standard;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -89,5 +92,32 @@ public class HomeActivity extends AppCompatActivity {
     public void stopService(View view) {
         Intent serviceIntent = new Intent(this,MyService.class);
         stopService(serviceIntent);
+    }
+
+    public void bindServ(View view) {
+        Intent serviceIntent = new Intent(this,CalcService.class);
+        bindService(serviceIntent,serviceConnection,BIND_AUTO_CREATE);
+    }
+
+    ServiceConnection serviceConnection = new ServiceConnection() {
+       // CalcService calcService = new CalcService(); //creating a service
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder lcalBinder) {
+            CalcService.LocalBinder localBinder = (CalcService.LocalBinder) lcalBinder;
+            CalcService calcService = localBinder.getService();
+            Log.i(TAG,"sum of 2 nos is--"+calcService.add(500,300));
+
+
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+
+        }
+    };
+
+    public void unBindServ(View view) {
+        Intent serviceIntent = new Intent(HomeActivity.this,CalcService.class);
+        unbindService(serviceConnection);
     }
 }
