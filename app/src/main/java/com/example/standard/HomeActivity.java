@@ -1,10 +1,14 @@
 package com.example.standard;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
@@ -16,6 +20,7 @@ import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity {
     String[] countries = {"India","china","pakistan","bangladesh","srilanka"};
+    NotificationManager notificationManager;
 
     public static String TAG = HomeActivity.class.getSimpleName();
     @Override
@@ -23,7 +28,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
        // ListView cListView = findViewById(R.id.langListview);
-
+        notificationManager = getSystemService(NotificationManager.class);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, //layout of each row of listview
                 countries);
@@ -95,6 +100,9 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void bindServ(View view) {
+        /*int a = 10;
+        Integer b = a;*/
+
         Intent serviceIntent = new Intent(this,CalcService.class);
         bindService(serviceIntent,serviceConnection,BIND_AUTO_CREATE);
     }
@@ -120,4 +128,38 @@ public class HomeActivity extends AppCompatActivity {
         Intent serviceIntent = new Intent(HomeActivity.this,CalcService.class);
         unbindService(serviceConnection);
     }
+
+    public void showNotification(View view) {
+        createNotificationChannel();
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "my channelid")
+                .setSmallIcon(R.drawable.baseline_food_bank_24)
+                .setContentTitle("standard chartered")
+                .setContentText("content text description")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        notificationManager.notify(111, builder.build());
+
+
+    }
+
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "my channel name";
+                    //getString(R.string.channel_name);
+            String description = "my channel description";
+                    //getString(R.string.channel_description);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+
+            NotificationChannel channel = new NotificationChannel("channelid", name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+
+
 }

@@ -9,8 +9,14 @@ import android.util.Log
 class CalcService : Service() {
     var TAG = CalcService::class.java.simpleName
     private val binder = LocalBinder()
+    //private final LocalBinder binder = new LocalBinder();
+
+
+
 
     fun add(a: Int, b:Int): Int {
+        //var numberOfBooks: Int = null
+
         return a+b;
     }
 
