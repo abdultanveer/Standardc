@@ -19,12 +19,12 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        ListView cListView = findViewById(R.id.langListview);
+       // ListView cListView = findViewById(R.id.langListview);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, //layout of each row of listview
                 countries);
-        cListView.setAdapter(adapter);
+       // cListView.setAdapter(adapter);
 
         Log.i(TAG,"oncreate");
 
@@ -78,5 +78,16 @@ public class HomeActivity extends AppCompatActivity {
         setResult(RESULT_OK,retIntent);  //RESULT_OK -- smell
         //close this activity
         finish();*/
+    }
+
+    public void startService(View view) {
+        Intent serviceIntent = new Intent(this,MyService.class);
+        serviceIntent.putExtra("url","https://downloadimageurl.com");
+        startService(serviceIntent);
+    }
+
+    public void stopService(View view) {
+        Intent serviceIntent = new Intent(this,MyService.class);
+        stopService(serviceIntent);
     }
 }

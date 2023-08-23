@@ -8,14 +8,12 @@
 
     <TextView
         android:id="@+id/tvResult"
+        style="@style/other_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="26dp"
         android:layout_marginTop="57dp"
-        android:layout_marginBottom="79dp"
         android:text="TextView"
-        style="@style/other_style"
-        app:layout_constraintBottom_toTopOf="@+id/_dynamic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,29 +43,37 @@
         app:layout_constraintStart_toEndOf="@+id/etContact"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ListView
-        android:id="@+id/langListview"
-
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="235dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="63dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView"
+        style="@style/myfont_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginBottom="49dp"
         android:text="TextView"
-        style="@style/myfont_style"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnStart"
+        android:onClick="startService"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="28dp"
+        android:text="start service"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/langListview" />
+        app:layout_constraintTop_toBottomOf="@+id/etContact" />
+
+    <Button
+        android:id="@+id/btnStop"
+        android:onClick="stopService"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:text="stop service"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnStart"
+        app:layout_constraintStart_toEndOf="@+id/btnStart" />
 </androidx.constraintlayout.widget.ConstraintLayout>
