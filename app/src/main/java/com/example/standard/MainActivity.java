@@ -3,6 +3,7 @@ package com.example.standard;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     public void launchHome(View view) {
         /*switch (view.getId()){
             case R.id.btnHome:*/
+
                 Intent homeIntent = new Intent(this,HomeActivity.class); //explicit intent
                 homeIntent.putExtra("sc","android app dev at sc");
                 startActivityForResult(homeIntent,123);
