@@ -1,12 +1,17 @@
 package com.example.standard;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -21,6 +26,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnFocusChang
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ListView cListView = findViewById(R.id.langListview);
+        registerForContextMenu(cListView);
+
+        Button selButton = findViewById(R.id.btnSelect);
+        registerForContextMenu(selButton);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, //layout of each row of listview
@@ -91,5 +100,38 @@ public class HomeActivity extends AppCompatActivity implements View.OnFocusChang
 
         }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+         super.onCreateOptionsMenu(menu);
+         getMenuInflater().inflate(R.menu.home_menu,menu); //inflation = parsing xml
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+         super.onOptionsItemSelected(item);
+        switch (item.getItemId()){
+
+
+        }
+        return true;
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.list_menu,menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+         super.onContextItemSelected(item);
+         switch (item.getItemId()){
+
+         }
+
+        return true;
     }
 }
