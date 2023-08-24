@@ -13,11 +13,12 @@ public class RoomActivity extends AppCompatActivity {
     Button button;
     int mPersonId;
     Intent intent;
-   // private AppDatabase mDb;
+   private AppDatabase mDb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room);
+        mDb = AppDatabase.getInstance(this);
         initViews();
     }
 
@@ -38,5 +39,6 @@ public class RoomActivity extends AppCompatActivity {
     }
 
     private void onSaveButtonClicked() {
+
     }
 }
