@@ -10,8 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements View.OnFocusChangeListener {
     String[] countries = {"India","china","pakistan","bangladesh","srilanka"};
 
     public static String TAG = HomeActivity.class.getSimpleName();
@@ -27,6 +28,8 @@ public class HomeActivity extends AppCompatActivity {
         cListView.setAdapter(adapter);
 
         Log.i(TAG,"oncreate");
+        EditText contactEditText = findViewById(R.id.etContact);
+        contactEditText.setOnFocusChangeListener(this);
 
       /*String data =   getIntent()   //get intent which started this activity
                 .getExtras()
@@ -76,5 +79,17 @@ public class HomeActivity extends AppCompatActivity {
         setResult(RESULT_OK,retIntent);  //RESULT_OK -- smell
         //close this activity
         finish();
+    }
+
+    @Override
+    public void onFocusChange(View view, boolean isFocussed) {
+        if(isFocussed){
+            Toast.makeText(this, "its foccused", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this, "lost focus", Toast.LENGTH_SHORT).show();
+
+        }
+
     }
 }
