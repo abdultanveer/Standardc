@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class RoomActivity extends AppCompatActivity {
     EditText etname, etemail, etpincode, etcity, etphoneNumber;
@@ -50,5 +51,20 @@ public class RoomActivity extends AppCompatActivity {
                      }
                  }
          );
+    }
+
+    public void findPerson(View view) {
+        TextView tvPerson = findViewById(R.id.tvPersonDetails);
+        EditText etPerson = findViewById(R.id.etPersonId);
+        int id = Integer.parseInt(etPerson.getText().toString());
+        AppExecutors.getInstance().diskIO().execute(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                     Person found =   mDb.personDao().loadPersonById(id);
+                     tvPerson.setText(found.name);
+                    }
+                }
+        );
     }
 }
