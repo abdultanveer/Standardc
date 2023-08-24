@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class RoomActivity extends AppCompatActivity {
-    EditText name, email, pincode, city, phoneNumber;
+    EditText etname, etemail, etpincode, etcity, etphoneNumber;
     Button button;
     int mPersonId;
     Intent intent;
@@ -24,11 +24,11 @@ public class RoomActivity extends AppCompatActivity {
 
 
     private void initViews() {
-        name = findViewById(R.id.edit_name);
-        email = findViewById(R.id.edit_email);
-        pincode = findViewById(R.id.edit_pincode);
-        city = findViewById(R.id.edit_city);
-        phoneNumber = findViewById(R.id.edit_number);
+        etname = findViewById(R.id.edit_name);
+        etemail = findViewById(R.id.edit_email);
+        etpincode = findViewById(R.id.edit_pincode);
+        etcity = findViewById(R.id.edit_city);
+        etphoneNumber = findViewById(R.id.edit_number);
         button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +39,16 @@ public class RoomActivity extends AppCompatActivity {
     }
 
     private void onSaveButtonClicked() {
-
+        Person abdul = new Person(etname.getText().toString(), etemail.getText().toString(),
+                etphoneNumber.getText().toString(), etpincode.getText().toString(), etcity.getText().toString());
+                //"name","email","34567890","765432","bangalore");
+         AppExecutors.getInstance().diskIO().execute(
+                 new Runnable() {
+                     @Override
+                     public void run() {
+                         mDb.personDao().insertPerson(abdul);
+                     }
+                 }
+         );
     }
 }
