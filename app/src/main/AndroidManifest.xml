@@ -5,6 +5,7 @@
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
     <application
+        android:name=".WordsApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -14,10 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Standard"
         tools:targetApi="31">
+        <activity android:name=".NewWordActivity"/>
         <activity
-            android:name=".BottomNavActivity"
-            android:exported="true"
-            android:label="@string/title_activity_bottom_nav" >
+            android:name=".MvvmWordsActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,13 +26,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HomeActivity"
-            android:exported="true">
+            android:name=".BottomNavActivity"
+            android:exported="true"
+            android:label="@string/title_activity_bottom_nav">
 
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".HomeActivity"
             android:exported="true"></activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
