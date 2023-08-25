@@ -9,6 +9,9 @@ class WordViewModel(private val repository: WordRepository): ViewModel() {
         var TAG = WordViewModel::class.java.simpleName
     }
 
+    val allWords: LiveData<List<Word>> = repository.allWords.asLiveData()
+
+
     fun insert(word: Word) = viewModelScope.launch {
         Log.i(WordRepository.TAG,word.word)
         repository.insert(word)
